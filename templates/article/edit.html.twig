@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Article
+{% endblock %}
+
+{% block body %}
+	<br>
+	<div class="col-sm-5 badge bg-primary">
+		<h3>Editer article</h3>
+	</div>
+	{{ include('article/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+
+	<a class="btn btn-primary" href="{{ path('app_article_index') }}">Liste des articles</a>
+	
+	{{ include('article/_delete_form.html.twig') }}
+{% endblock %}

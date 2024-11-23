@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index
+{% endblock %}
+
+{% block body %}
+	<br>
+	<div class="col-sm-5 badge bg-primary">
+		<h3>Liste des articles</h3>
+	</div>
+	{% if is_granted('ROLE_SUPERADMIN') %}
+		<div class="text-end">
+			<a href="{{ path('app_article_new') }}" class="btn btn-primary">
+				<i class="fa fa-plus" aria-hidden="true"></i>
+				Ajouter article</a>
+		</div>
+	{% endif %}
+	<br>
+	<table class="table table-striped" style="width:100%" id="myTable">
+		<thead>
+			<tr class="table-primary">
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Categories</th>
+				<th>Qte</th>
+				<th>Prix</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for article in articles %}
+				<tr>
+					<td>{{ article.id }}</td>
+					<td>{{ article.nom }}</td>
+					{# ********* #}
+					<td>
+						{% for c in article.categories %}
+							{{ c.nom }}-
+						{% endfor %}
+					</td>
+					{# ************ #}
+					<td>{{ article.qte }}</td>
+					<td>{{ article.prix }}</td>
+					<td>
+						<a type="button" class="btn btn-primary" href="{{ path('app_article_show', {'id': article.id}) }}">
+							<i class="fa fa-eye" aria-hidden="true"></i>
+							Voir</a>
+						<a type="button" class="btn btn-primary" href="{{ path('app_article_edit', {'id': article.id}) }}">
+							<i class="fa fa-pencil-square" aria-hidden="true"></i>
+							Editer</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% if is_granted('ROLE_SUPERADMIN') %}
+		<a href="{{ path('app_article_new') }}" class="btn btn-primary">Ajouter article</a>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture
+{% endblock %}
+
+{% block body %}
+	<br>
+	<div class="list-group" style="width: 30%">
+		<a href="#" class="list-group-item list-group-item-action active">Facture N° :
+			{{ facture.id }}</a>
+
+		<a href="#" class="list-group-item list-group-item-action">Client :
+			{{ facture.client.nom }}</a>
+		<a href="#" class="list-group-item list-group-item-action disabled">Date :
+			{{ facture.date ? facture.date|date('Y-m-d') : '' }}</a>
+	</div>
+	<br>
+	<div class="text-end">
+		<a href="{{ path('app_detailfacture_new', {'idfa': facture.id}) }}" class="btn btn-primary">Ajouter article</a>
+	</div>
+	<br>
+	<table class="table table-hover">
+		<thead>
+			<tr class="table-primary">
+				<th>Id</th>
+				<th>Article</th>
+				<th>Qte</th>
+				<th>Prix</th>
+				<th>Total</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for df in facture.detailfactures  %}
+				<tr>
+					<td>{{ df.id }}</td>
+					<td>{{ df.article.nom }}</td>
+					<td>{{ df.qte }}</td>
+					<td>{{ df.prix }}</td>
+					<td>{{ df.prix * df.qte }}</td>
+					<td>
+
+						<a type="button" class="btn btn-primary" href="{{ path('app_detailfacture_edit', {'id': df.id}) }}">Editer</a>
+						<a type="button" class="btn btn-primary" href="{{ path('app_rowfacture_delete', {'id': df.id}) }}">Supprimer</a>
+
+					</td>
+
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">no records found</td>
+				</tr>
+			{% endfor %}
+
+		</tbody>
+	</table>
+	<br>
+	<div class="list-group" style="width: 20%;margin-left: auto">
+		<a href="#" class="list-group-item list-group-item-action active">Totaux</a>
+
+		<a href="#" class="list-group-item list-group-item-action">Montant TTc :
+			{{ facture.ttc }}</a>
+
+	</div>
+{% endblock %}

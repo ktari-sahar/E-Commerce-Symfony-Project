@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">E-Commerce v 1.0</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarColor01">
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link active" href="/home">
+						<i class="fa fa-home" aria-hidden="true"></i>
+						Home
+						<span class="visually-hidden">(current)</span>
+					</a>
+				</li>
+				<li class="nav-item">
+
+					<a class="nav-link" href="/client">
+						<i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>
+						Cients</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/article">
+						<i class="fa fa-sitemap" aria-hidden="true"></i>
+						Articles</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/categorie">
+						<i class="fa fa-list" aria-hidden="true"></i>
+						Nos catégories</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/facture">
+						<i class="fa fa-file" aria-hidden="true"></i>
+						Facturation</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/commande">
+						<i class="fa fa-phone" aria-hidden="true"></i>
+						Commandes</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+						{% if app.user %}
+							<i class="fa fa-male" aria-hidden="true"></i>
+							{{ app.user.nomutilisateur }}
+							{%else%}
+							<i class="fa fa-male" aria-hidden="true"></i>
+							Not login
+
+						{% endif %}
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">
+							{% if app.user %}
+								<i class="fa fa-envelope" aria-hidden="true"></i>
+								{{ app.user.userIdentifier }}
+								{%else%}
+								No email
+							{% endif %}
+						</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">
+							{% if app.user %}
+								<a class="dropdown-item" href="{{ path('app_logout') }}">
+									<i class="fa fa-sign-out" aria-hidden="true"></i>
+									Logout</a>
+								{%else%}
+								<a class="dropdown-item" href="{{ path('app_login') }}">
+									<i class="fa fa-sign-in" aria-hidden="true"></i>
+									Login</a>
+							{% endif %}
+						</a>
+
+					</div>
+				</li>
+
+			</ul>
+			<form class="d-flex">
+				<input class="form-control me-sm-2" type="search" placeholder="Search">
+				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
+	</div>
+</nav>

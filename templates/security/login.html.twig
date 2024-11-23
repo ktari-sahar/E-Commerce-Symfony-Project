@@ -1,0 +1,105 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{{asset('/assets/css/flatly.min.css')}}"> {% block stylesheets %}{% endblock %}
+<script src="{{asset('assets/js/bootstrap.bundle.min.js')}}" defer></script>
+{% block javascripts %}{% endblock %}
+<script src="{{asset('assets/js/scripts.js')}}" defer></script>
+{% block body %}
+	<div class="col-sm-12 badge bg-primary">
+		<h3>E-commerce v1.0</h3>
+	</div>
+	<div class="row justify-content-right">
+		<div class="container">
+			<br>
+			<br>
+			<br>
+
+			<section class="section register min-vh-200 d-flex flex-column align-items-right justify-content-right py-4">
+				<div class="container">
+
+					<div class="row justify-content-center">
+
+						<div class="col-lg-4 col-md-6  align-items-center justify-content-center">
+
+							<div class="card mb-2">
+								<div class="card-body">
+
+									<div class="pt-4 pb-2">
+
+										<div class="col-sm-12 badge bg-primary">
+											<h5>Login to Your Account</h5>
+										</div>
+										<p class="text-center small">Enter your username & password to login</p>
+									</div>
+									<form class="row g-3 needs-validation" method="post">
+										{% if error %}
+											<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+										{% endif %}
+
+										{% if app.user %}
+											<div class="mb-3">
+												You are logged in as
+												{{ app.user.userIdentifier }},
+												<a href="{{ path('app_logout') }}">Logout</a>
+											</div>
+										{% endif %}
+
+										{# <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1> #}
+										<center>
+
+											<img id="Photo" style="width:60px" src="{{ asset('images/login/anonyme.png') }}"/>
+
+										</center>
+										<div class="col-18">
+											<label for="username">Email</label>
+											<div class="input-group has-validation">
+												<span class="input-group-text" id="inputGroupPrepend">@</span>
+												{# <label for="inputEmail">Email</label> #}
+												<input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
+
+
+											</div>
+										</div>
+										<div class="col-18">
+											<label for="password">Password</label>
+											<div class="input-group has-validation">
+												<span class="input-group-text" id="inputGroupPrepend">***</span>
+												<input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+
+											</div>
+										</div>
+										<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+
+										<div class="col-12">
+											<button class="btn btn-primary w-100" type="submit">
+												Sign in
+											</button>
+										</div>
+
+										<div class="col-12">
+											<p class="small mb-0">Don't have account?
+												<a href="{{path('app_register')}}">Create an account</a>
+											</p>
+										</div>
+										<center>
+											<img id="Photo1" style="width:60px" src="{{ asset('images/login/gmail.png') }}"/>
+
+											<img id="Photo2" style="width:30px" src="{{ asset('images/login/facebook.png') }}"/>
+										</center>
+
+									</form>
+
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+
+			</section>
+
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client index
+{% endblock %}
+
+{% block body %}
+	<h4>Clients ...</h4>
+	<div class="text-end">
+		<a type="button" class="btn btn-primary" href="{{ path('app_client_new') }}">Ajouter client</a>
+	</div>
+	<br>
+	<table class="table table-striped" style="width:100%" id="myTable">
+		<thead>
+			<tr class="table-primary">
+				<th>photo</th>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Adresse</th>
+				<th>Email</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for client in clients %}
+				<tr>
+					<td><img class="rounded-circle" width="50" height="50" style="border-radius:75px" src="{{ asset('images/imagesclients/' ~ client.imagefilename) }}" alt=""></td>
+					<td>{{ client.id }}</td>
+					<td>{{ client.nom }}</td>
+					<td>{{ client.adresse }}</td>
+					<td>{{ client.email }}</td>
+					<td>
+						<a type="button" class="btn btn-primary" href="{{ path('app_client_show', {'id': client.id}) }}">show</a>
+						<a type="button" class="btn btn-primary" href="{{ path('app_client_edit', {'id': client.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a type="button" class="btn btn-primary" href="{{ path('app_client_new') }}">Ajouter client</a>
+{% endblock %}

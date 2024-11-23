@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture index
+{% endblock %}
+
+{% block body %}
+	<br>
+	<div class="col-sm-5 badge bg-primary">
+		<h3>Liste des factures</h3>
+	</div>
+	{% if is_granted('ROLE_SUPERADMIN') %}
+		<div class="text-end">
+			<a href="{{ path('app_facture_new') }}" class="btn btn-primary">
+				<i class="fa fa-plus" aria-hidden="true"></i>
+				Ajouter facture</a>
+		</div>
+	{% endif %}
+	<br>
+	<table class="table table-striped" style="width:100%" id="myTable">
+		<thead>
+			<tr class="table-primary">
+				<th>Id</th>
+				<th>Client</th>
+				<th>Date</th>
+				<th>Ttc</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for facture in factures %}
+				<tr>
+					<td>{{ facture.id }}</td>
+					<td>{{ facture.client.nom }}</td>
+					<td>{{ facture.date ? facture.date|date('Y-m-d') : '' }}</td>
+					<td>{{ facture.ttc }}</td>
+					<td>
+						<a type="button" class="btn btn-primary" href="{{ path('app_facture_show', {'id': facture.id}) }}">
+							<i class="fa fa-eye" aria-hidden="true"></i>
+							Voir detail</a>
+						<a type="button" class="btn btn-primary" href="{{ path('app_facture_edit', {'id': facture.id}) }}">
+							<i class="fa fa-pencil-square" aria-hidden="true"></i>
+							Editer</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a class="btn btn-primary" href="{{ path('app_facture_new') }}">Ajouter facture</a>
+{% endblock %}

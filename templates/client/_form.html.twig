@@ -1,0 +1,17 @@
+<div class="row">
+
+	<div class="col-sm-5">
+		{{ form_start(form) }}
+		{{ form_row(form.nom,{'attr': {'class': 'form-control', 'placeholder': 'Nom client ...'}})  }}
+		{{ form_row(form.adresse,{'attr': {'class': 'form-control', 'placeholder': 'Adresse client ...'}})  }}
+		{{ form_row(form.email,{'attr': {'class': 'form-control', 'placeholder': 'Entrer un email valide ...'}})  }}
+	</div>
+	<div class="col-sm-5">
+		<img class="rounded-circle" width="150" height="150" src="{{ asset('images/imagesclients/' ~ client.imagefilename) }}" alt="">
+		{{ form_row(form.photo, {'attr': {'class': 'form-control', 'placeholder': 'Choisissez une photo ...'}}) }}
+
+		<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+		{{ form_end(form) }}
+	</div>
+
+</div>

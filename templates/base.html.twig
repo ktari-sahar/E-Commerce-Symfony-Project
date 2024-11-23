@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+
+		{% block stylesheets %}
+
+			<!-- DataTables CSS -->
+			<link
+			rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+			<!-- Buttons DataTables CSS -->
+			<link
+			rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+			<!-- Select2 CSS -->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+			<link rel="stylesheet" href="{{ asset('assets/css/flatly.min.css') }}">
+		{% endblock %}
+	</head>
+
+	<body>
+
+
+		{% if app.user %}
+			{{include('injections/navbar.html.twig')}}
+		{% endif %}
+
+
+		<div class="container-xl"> {% block body %}{% endblock %}
+			</div>
+
+			{% block javascripts %}
+				<!-- jQuery -->
+				<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+				<!-- DataTables JS -->
+				<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+				<!-- Buttons DataTables JS -->
+				<script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+				<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+				<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+				<!-- Select2 JS -->
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
+				<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+				<!-- Script to initialize DataTable with buttons and Select2 -->
+				<script>
+					$(document).ready(function () { // Initialize DataTable with export buttons
+$('#myTable').DataTable({
+dom: 'Bfrtip',
+buttons: [
+{
+extend: 'copy',
+text: 'Copier',
+className: 'btn btn-primary' // Modifiez ici pour changer la classe
+},
+{
+extend: 'csv',
+text: 'Exporter en CSV',
+className: 'btn btn-success' // Modifiez ici pour changer la classe
+},
+{
+extend: 'excel',
+text: 'Exporter en Excel',
+className: 'btn btn-info' // Modifiez ici pour changer la classe
+},
+{
+extend: 'pdf',
+text: 'Exporter en PDF',
+className: 'btn btn-danger' // Modifiez ici pour changer la classe
+}, {
+extend: 'print',
+text: 'Imprimer',
+className: 'btn btn-warning' // Modifiez ici pour changer la classe
+}
+]
+});
+
+// Initialize Select2
+$('.select2').select2();
+});
+				</script>
+			{% endblock %}
+		</body>
+
+	</html>

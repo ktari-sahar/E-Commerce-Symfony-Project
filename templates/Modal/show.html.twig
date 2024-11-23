@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Page avec Modale</h1>
+
+    <a href="{{ path('app_show_modal', { showModal: true }) }}">Afficher la modale</a>
+
+    {% if showModal %}
+        <div class="modal-overlay" style="display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);">
+            <div class="modal" style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
+                <h2>Modale Affichée</h2>
+                <p>Ceci est le contenu de la modale.</p>
+                <a href="{{ path('app_show_modal') }}">Fermer la modale</a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

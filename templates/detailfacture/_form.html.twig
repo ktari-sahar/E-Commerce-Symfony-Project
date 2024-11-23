@@ -1,0 +1,19 @@
+<div class="col-sm-5">
+	{{ form_start(form) }}
+	{{ form_row(form.facture, { 'attr': { 'style': 'width: 100%;padding: 10px;' } }) }}
+	{{ form_row(form.article, { 'attr': { 'style': 'width: 100%;padding: 10px;' } }) }}
+	{{ form_row(form.qte, { 'attr': { 'style': 'width: 100%;padding: 10px;' } }) }}
+	{{ form_row(form.prix, { 'attr': { 'style': 'width: 100%;padding: 10px;' } }) }}
+	{{ form_widget(form) }}
+</div>
+<br>
+<button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}
+{% block javascripts %}
+	<script>
+		$(document).ready(function () {
+$('.select2').select2();
+});
+	</script>
+
+{% endblock %}

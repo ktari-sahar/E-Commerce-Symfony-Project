@@ -98,4 +98,4 @@ This project is licensed under the MIT License. See the `LICENSE` file for more 
 ---
 
 ## Contact
-For any inquiries or issues, feel free to open an issue or contact the repository maintainer at [your-email@example.com].
+For any inquiries or issues, feel free to open an issue or contact the repository maintainer at [saharktari510@gmail.com].
